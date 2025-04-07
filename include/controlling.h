@@ -173,37 +173,37 @@ Angle inverseKinematics(float x_des, float z_des, float x_start, float z_start, 
 }
 
 // Функция для выбора привода и скорости 
-void setMotorSpeed(int motorNumber, int speed){
+void setMotorSpeedLink(int motorNumber, int speed){
     switch (motorNumber) {
         case 1:
-            driverHipLeft.manualControl(speed);
+            driverHipLeftLink.manualControl(speed);
             break;
         case 2:
-            driverKneeLeft.manualControl(speed);
+            driverKneeLeftLink.manualControl(speed);
             break;
         case 3:
-            driverFootLeft.manualControl(speed);
+            driverFootLeftLink.manualControl(speed);
             break;
         case 4:
-            driverHipRight.manualControl(-speed);
+            driverHipRightLink.manualControl(-speed);
             break;
         case 5:
-            driverKneeRight.manualControl(-speed);
+            driverKneeRightLink.manualControl(-speed);
             break;
         case 6:
-            driverFootRight.manualControl(-speed);
+            driverFootRightLink.manualControl(-speed);
             break;
     }
 }
 
 // Функция для остановки всех приводов
-void stopAllMotors(){
-    driverHipLeft.manualControl(0);
-    driverKneeLeft.manualControl(0);
-    driverFootLeft.manualControl(0);
-    driverHipRight.manualControl(0);
-    driverKneeRight.manualControl(0);
-    driverFootRight.manualControl(0);
+void stopAllMotorsLink(){
+    driverHipLeftLink.manualControl(0);
+    driverKneeLeftLink.manualControl(0);
+    driverFootLeftLink.manualControl(0);
+    driverHipRightLink.manualControl(0);
+    driverKneeRightLink.manualControl(0);
+    driverFootRightLink.manualControl(0);
 }
 
 // Функция для режима полуавтоматического управления углами
@@ -233,15 +233,15 @@ void setAngleDesired(int motorNumber, float angle, float time){
 
                 case 1:{
                     _hip_left_set_pos_deg = __poly_hip_left.getPosition();
-                    driverHipLeft.control(_hip_left_set_pos_deg);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.control(_hip_left_set_pos_deg);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_left.isFinished()){
-                        driverHipLeft.manualControl(0);
+                        driverHipLeftLink.manualControl(0);
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -258,15 +258,15 @@ void setAngleDesired(int motorNumber, float angle, float time){
 
                 case 1:{
                     _knee_left_set_pos_deg = __poly_knee_left.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.control(_knee_left_set_pos_deg);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.control(_knee_left_set_pos_deg);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_left.isFinished()){
-                        driverKneeLeft.manualControl(0);
+                        driverKneeLeftLink.manualControl(0);
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -283,15 +283,15 @@ void setAngleDesired(int motorNumber, float angle, float time){
 
                 case 1:{
                     _foot_left_set_pos_deg = __poly_foot_left.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.control(_foot_left_set_pos_deg);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.control(_foot_left_set_pos_deg);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_foot_left.isFinished()){
-                        driverFootLeft.manualControl(0);
+                        driverFootLeftLink.manualControl(0);
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -308,15 +308,15 @@ void setAngleDesired(int motorNumber, float angle, float time){
 
                 case 1:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        driverHipRight.manualControl(0);
+                        driverHipRightLink.manualControl(0);
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -333,15 +333,15 @@ void setAngleDesired(int motorNumber, float angle, float time){
 
                 case 1:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_right.isFinished()){
-                        driverKneeRight.manualControl(0);
+                        driverKneeRightLink.manualControl(0);
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -358,15 +358,15 @@ void setAngleDesired(int motorNumber, float angle, float time){
 
                 case 1:{
                     _foot_right_set_pos_deg = __poly_foot_right.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.control(_foot_right_set_pos_deg);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.control(_foot_right_set_pos_deg);
 
                     if(__poly_foot_right.isFinished()){
-                        driverFootRight.manualControl(0);
+                        driverFootRightLink.manualControl(0);
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -375,12 +375,12 @@ void setAngleDesired(int motorNumber, float angle, float time){
         } break;
     }
     // Включаем питание приводов
-    driverHipLeft.setEnable(true);
-    driverKneeLeft.setEnable(true);
-    driverFootLeft.setEnable(true);
-    driverHipRight.setEnable(true);
-    driverKneeRight.setEnable(true);
-    driverFootRight.setEnable(true);
+    driverHipLeftLink.setEnable(true);
+    driverKneeLeftLink.setEnable(true);
+    driverFootLeftLink.setEnable(true);
+    driverHipRightLink.setEnable(true);
+    driverKneeRightLink.setEnable(true);
+    driverFootRightLink.setEnable(true);
 }
 
 
@@ -399,7 +399,7 @@ void mainControlLinks(){
 
     switch(system_state){
         case SS_MAIN_MENU_LINK:{
-            if(isSSChange());
+            if(isSSChangeLink());
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.startsWith("ManLin")){
@@ -415,10 +415,10 @@ void mainControlLinks(){
                                 motorNumber = param.toInt();
                                 speed = param.substring(param.indexOf(':') + 1).toInt();
                                 if(input.startsWith("ManLinUp")) {
-                                    setMotorSpeed(motorNumber, speed);
+                                    setMotorSpeedLink(motorNumber, speed);
                                 }
                                 else if(input.startsWith("ManLinDown")){
-                                    setMotorSpeed(motorNumber, -speed);
+                                    setMotorSpeedLink(motorNumber, -speed);
                                 }
                             }
                         }
@@ -441,7 +441,7 @@ void mainControlLinks(){
                     }
                 }
                 else if (input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                 }
                 else if(input.equals("Init")){
                     system_state = SS_START_POSING_LINK;
@@ -471,7 +471,7 @@ void mainControlLinks(){
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                 }
             }
@@ -497,12 +497,12 @@ void mainControlLinks(){
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                 }
             }
 
-            if(isSSChange()){
+            if(isSSChangeLink()){
                 // Рассчитываем продолжительность перемещения звеньев
                 float __hip_left_posing_time = (abs(encodHipLeftLink.getPositionDeg() - __HIP_START_POS_DEG) / __VELOCITY) * 1000.0;
                 float __knee_left_posing_time = (abs(encodKneeLeftLink.getPositionDeg() - __KNEE_START_POS_DEG) / __VELOCITY) * 1000.0;
@@ -512,12 +512,12 @@ void mainControlLinks(){
                 float __foot_right_posing_time = (abs(encodFootRightLink.getPositionDeg() - __FOOT_START_POS_DEG) / __VELOCITY) * 1000.0;
 
                 // Включаем питание приводов
-                driverHipLeft.setEnable(true);
-                driverKneeLeft.setEnable(true);
-                driverFootLeft.setEnable(true);
-                driverHipRight.setEnable(true);
-                driverKneeRight.setEnable(true);
-                driverFootRight.setEnable(true);
+                driverHipLeftLink.setEnable(true);
+                driverKneeLeftLink.setEnable(true);
+                driverFootLeftLink.setEnable(true);
+                driverHipRightLink.setEnable(true);
+                driverKneeRightLink.setEnable(true);
+                driverFootRightLink.setEnable(true);
 
                 // Рассчитываем коэффициенты полинома
                 __poly_hip_left.calculate(encodHipLeftLink.getPositionDeg(), __HIP_START_POS_DEG, __hip_left_posing_time);
@@ -536,24 +536,24 @@ void mainControlLinks(){
             _knee_right_set_pos_deg = __poly_knee_right.getPosition();
             _foot_right_set_pos_deg = __poly_foot_right.getPosition();
 
-            driverHipLeft.control(_hip_left_set_pos_deg);
-            driverKneeLeft.control(_knee_left_set_pos_deg);
-            driverFootLeft.control(_foot_left_set_pos_deg);
-            driverHipRight.control(_hip_right_set_pos_deg);
-            driverKneeRight.control(_knee_right_set_pos_deg);
-            driverFootRight.control(_foot_right_set_pos_deg);
+            driverHipLeftLink.control(_hip_left_set_pos_deg);
+            driverKneeLeftLink.control(_knee_left_set_pos_deg);
+            driverFootLeftLink.control(_foot_left_set_pos_deg);
+            driverHipRightLink.control(_hip_right_set_pos_deg);
+            driverKneeRightLink.control(_knee_right_set_pos_deg);
+            driverFootRightLink.control(_foot_right_set_pos_deg);
 
             // Проверяем, заняли ли приводы начальное положение
             if(__poly_hip_left.isFinished() && __poly_knee_left.isFinished() && __poly_foot_left.isFinished() &&
             __poly_hip_right.isFinished() && __poly_knee_right.isFinished() && __poly_foot_right.isFinished()){
                 system_state = SS_MAIN_MENU_LINK;
-                stopAllMotors();
+                stopAllMotorsLink();
             }           
 
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                 }
             }
@@ -575,19 +575,19 @@ void mainControlLinks(){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
                     system_state = SS_MAIN_MENU_LINK;
-                    stopAllMotors();
+                    stopAllMotorsLink();
                 }
             }
 
-            if(isSSChange()){
+            if(isSSChangeLink()){
                 mode = 0;
                 // Включаем питание приводов
-                driverHipLeft.setEnable(true);
-                driverKneeLeft.setEnable(true);
-                driverFootLeft.setEnable(true);
-                driverHipRight.setEnable(true);
-                driverKneeRight.setEnable(true);
-                driverFootRight.setEnable(true);
+                driverHipLeftLink.setEnable(true);
+                driverKneeLeftLink.setEnable(true);
+                driverFootLeftLink.setEnable(true);
+                driverHipRightLink.setEnable(true);
+                driverKneeRightLink.setEnable(true);
+                driverFootRightLink.setEnable(true);
             };
 
             switch(mode){
@@ -599,15 +599,15 @@ void mainControlLinks(){
                 case 1:{
                     _hip_left_set_pos_deg = __poly_hip_left.getPosition();
 
-                    driverHipLeft.control(_hip_left_set_pos_deg);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.control(_hip_left_set_pos_deg);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                        __poly_knee_left.calculate(encodKneeLeftLink.getPositionDeg(), -30, 3000); 
                        mode = 2;
                     }
@@ -616,15 +616,15 @@ void mainControlLinks(){
                 case 2:{
                     _knee_left_set_pos_deg = __poly_knee_left.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.control(_knee_left_set_pos_deg);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.control(_knee_left_set_pos_deg);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_foot_left.calculate(encodFootLeftLink.getPositionDeg(), -10, 2000); 
                         mode = 3;
                     }
@@ -633,15 +633,15 @@ void mainControlLinks(){
                 case 3:{
                     _foot_left_set_pos_deg = __poly_foot_left.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.control(_foot_left_set_pos_deg);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.control(_foot_left_set_pos_deg);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_foot_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_foot_left.calculate(encodFootLeftLink.getPositionDeg(), 0, 2000); 
                         mode = 4;
                     }
@@ -650,15 +650,15 @@ void mainControlLinks(){
                 case 4:{
                     _foot_left_set_pos_deg = __poly_foot_left.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.control(_foot_left_set_pos_deg);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.control(_foot_left_set_pos_deg);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_foot_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_knee_left.calculate(encodKneeLeftLink.getPositionDeg(), 0, 3000); 
                         mode = 5;
                     }
@@ -667,15 +667,15 @@ void mainControlLinks(){
                 case 5:{
                     _knee_left_set_pos_deg = __poly_knee_left.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.control(_knee_left_set_pos_deg);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.control(_knee_left_set_pos_deg);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_hip_left.calculate(encodHipLeftLink.getPositionDeg(), 0, 3000); 
                         mode = 6;
                     }
@@ -684,15 +684,15 @@ void mainControlLinks(){
                 case 6:{
                     _hip_left_set_pos_deg = __poly_hip_left.getPosition();
                     
-                    driverHipLeft.control(_hip_left_set_pos_deg);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.control(_hip_left_set_pos_deg);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_hip_right.calculate(encodHipRightLink.getPositionDeg(), -30, 3000);
                         mode = 7;
                     }
@@ -701,15 +701,15 @@ void mainControlLinks(){
                 case 7:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                        __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), 30, 3000); 
                        mode = 8;
                     }
@@ -718,15 +718,15 @@ void mainControlLinks(){
                 case 8:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_foot_right.calculate(encodFootRightLink.getPositionDeg(), 10, 2000); 
                         mode = 9;
                     }
@@ -735,15 +735,15 @@ void mainControlLinks(){
                 case 9:{
                     _foot_right_set_pos_deg = __poly_foot_right.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.control(_foot_right_set_pos_deg);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.control(_foot_right_set_pos_deg);
 
                     if(__poly_foot_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_foot_right.calculate(encodFootRightLink.getPositionDeg(), 0, 2000); 
                         mode = 10;
                     }
@@ -752,15 +752,15 @@ void mainControlLinks(){
                 case 10:{
                     _foot_right_set_pos_deg = __poly_foot_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.control(_foot_right_set_pos_deg);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.control(_foot_right_set_pos_deg);
 
                     if(__poly_foot_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), 0, 3000); 
                         mode = 11;
                     }
@@ -769,15 +769,15 @@ void mainControlLinks(){
                 case 11:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_hip_right.calculate(encodHipRightLink.getPositionDeg(), 0, 3000); 
                         mode = 12;
                     }
@@ -786,15 +786,15 @@ void mainControlLinks(){
                 case 12:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         mode = 0;
                     }
                 } break;
@@ -823,20 +823,20 @@ void mainControlLinks(){
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                 }
             }
 
-            if(isSSChange()){
+            if(isSSChangeLink()){
                 mode = 0;
                 // Включаем питание приводов
-                driverHipLeft.setEnable(true);
-                driverKneeLeft.setEnable(true);
-                driverFootLeft.setEnable(true);
-                driverHipRight.setEnable(true);
-                driverKneeRight.setEnable(true);
-                driverFootRight.setEnable(true);
+                driverHipLeftLink.setEnable(true);
+                driverKneeLeftLink.setEnable(true);
+                driverFootLeftLink.setEnable(true);
+                driverHipRightLink.setEnable(true);
+                driverKneeRightLink.setEnable(true);
+                driverFootRightLink.setEnable(true);
             };
             
 
@@ -850,15 +850,15 @@ void mainControlLinks(){
                 case 1:{
                     _knee_left_set_pos_deg = __poly_knee_left.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.control(_knee_left_set_pos_deg);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.control(_knee_left_set_pos_deg);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __hip_left_posing_time = (abs(encodHipLeftLink.getPositionDeg() - 85.0) / __VELOCITY) * 1000.0;
                        __poly_hip_left.calculate(encodHipLeftLink.getPositionDeg(), 85, __hip_left_posing_time); 
                        mode = 2;
@@ -868,15 +868,15 @@ void mainControlLinks(){
                 case 2:{
                     _hip_left_set_pos_deg = __poly_hip_left.getPosition();
                     
-                    driverHipLeft.control(_hip_left_set_pos_deg);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.control(_hip_left_set_pos_deg);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __knee_left_posing_time = (abs(encodKneeLeftLink.getPositionDeg() - 90.0) / __VELOCITY) * 1000.0;
                         __poly_knee_left.calculate(encodKneeLeftLink.getPositionDeg(), -90, __knee_left_posing_time);
                         mode = 3;
@@ -886,15 +886,15 @@ void mainControlLinks(){
                 case 3:{
                     _knee_left_set_pos_deg = __poly_knee_left.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.control(_knee_left_set_pos_deg);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.control(_knee_left_set_pos_deg);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __foot_left_posing_time = (abs(encodFootLeftLink.getPositionDeg() - 0.0) / __VELOCITY) * 1000.0;
                         __poly_foot_left.calculate(encodFootLeftLink.getPositionDeg(), 0, __foot_left_posing_time);
                         mode = 4;
@@ -904,15 +904,15 @@ void mainControlLinks(){
                 case 4:{
                     _foot_left_set_pos_deg = __poly_foot_left.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.control(_foot_left_set_pos_deg);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.control(_foot_left_set_pos_deg);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_foot_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __knee_right_posing_time = (abs(encodKneeRightLink.getPositionDeg() - 45.0) / __VELOCITY) * 1000.0;
                         __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), 45, __knee_right_posing_time);
                         mode = 5;
@@ -922,15 +922,15 @@ void mainControlLinks(){
                 case 5:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __hip_right_posing_time = (abs(encodHipRightLink.getPositionDeg() - 85.0) / __VELOCITY) * 1000.0;
                        __poly_hip_right.calculate(encodHipRightLink.getPositionDeg(), -85, __hip_right_posing_time); 
                        mode = 6;
@@ -940,15 +940,15 @@ void mainControlLinks(){
                 case 6:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
                     
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __knee_right_posing_time = (abs(encodKneeRightLink.getPositionDeg() - 90.0) / __VELOCITY) * 1000.0;
                         __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), 90, __knee_right_posing_time);
                         mode = 7;
@@ -958,15 +958,15 @@ void mainControlLinks(){
                 case 7:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __foot_right_posing_time = (abs(encodFootRightLink.getPositionDeg() - 0.0) / __VELOCITY) * 1000.0;
                         __poly_foot_right.calculate(encodFootRightLink.getPositionDeg(), 0, __foot_right_posing_time);
                         mode = 8;
@@ -976,15 +976,15 @@ void mainControlLinks(){
                 case 8:{
                     _foot_right_set_pos_deg = __poly_foot_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.control(_foot_right_set_pos_deg);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.control(_foot_right_set_pos_deg);
 
                     if(__poly_foot_left.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         mode = 0;
                         system_state = SS_MAIN_MENU_LINK;
                     }
@@ -1003,20 +1003,20 @@ void mainControlLinks(){
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                     mode = 0;
                 }
             }
 
-            if(isSSChange()){
+            if(isSSChangeLink()){
                 // Включаем питание приводов
-                driverHipLeft.setEnable(true);
-                driverKneeLeft.setEnable(true);
-                driverFootLeft.setEnable(true);
-                driverHipRight.setEnable(true);
-                driverKneeRight.setEnable(true);
-                driverFootRight.setEnable(true);
+                driverHipLeftLink.setEnable(true);
+                driverKneeLeftLink.setEnable(true);
+                driverFootLeftLink.setEnable(true);
+                driverHipRightLink.setEnable(true);
+                driverKneeRightLink.setEnable(true);
+                driverFootRightLink.setEnable(true);
 
                 x_ankle_start_des = lyambda * (lengthHip + lengthKnee) * sin(angle_des);
                 y_ankle_start_des = -lyambda * (lengthHip + lengthKnee) * cos(angle_des);
@@ -1055,15 +1055,15 @@ void mainControlLinks(){
                 case 2:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), q21_des, 0, 0, 0, 3000);
                         mode = 3;
                     }
@@ -1072,14 +1072,14 @@ void mainControlLinks(){
                 case 3:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         mode = 4;
                     }
                 } break;
@@ -1097,12 +1097,12 @@ void mainControlLinks(){
 
                     kinematics = directKinematics(lengthHip, lengthKnee);
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(rad2deg(-1 * angle.q1));
-                    driverKneeRight.control(rad2deg(-1 * angle.q21));
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(rad2deg(-1 * angle.q1));
+                    driverKneeRightLink.control(rad2deg(-1 * angle.q21));
+                    driverFootRightLink.manualControl(0);
 
                     Serial.print(kinematics.A3x);
                     Serial.print(" , ");
@@ -1127,20 +1127,20 @@ void mainControlLinks(){
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                     mode = 0;
                 }
             }
 
-            if(isSSChange()){
+            if(isSSChangeLink()){
                 // Включаем питание приводов
-                driverHipLeft.setEnable(true);
-                driverKneeLeft.setEnable(true);
-                driverFootLeft.setEnable(true);
-                driverHipRight.setEnable(true);
-                driverKneeRight.setEnable(true);
-                driverFootRight.setEnable(true);
+                driverHipLeftLink.setEnable(true);
+                driverKneeLeftLink.setEnable(true);
+                driverFootLeftLink.setEnable(true);
+                driverHipRightLink.setEnable(true);
+                driverKneeRightLink.setEnable(true);
+                driverFootRightLink.setEnable(true);
 
                 x_ankle_start_des =  lyambda * (lengthHip + lengthKnee) * sin(angle_des);
                 y_ankle_start_des =  -lyambda * (lengthHip + lengthKnee) * cos(angle_des);
@@ -1179,15 +1179,15 @@ void mainControlLinks(){
                 case 2:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), q21_des, 0, 0, 0, 3000);
                         mode = 3;
                     }
@@ -1196,14 +1196,14 @@ void mainControlLinks(){
                 case 3:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         mode = 4;
                     }
                 } break;
@@ -1215,12 +1215,12 @@ void mainControlLinks(){
 
                     kinematics = directKinematics(lengthHip, lengthKnee);
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(rad2deg(-1 * angle.q1));
-                    driverKneeRight.control(rad2deg(-1 * angle.q21));
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(rad2deg(-1 * angle.q1));
+                    driverKneeRightLink.control(rad2deg(-1 * angle.q21));
+                    driverFootRightLink.manualControl(0);
 
                     Serial.print(kinematics.A3x);
                     Serial.print(" , ");
@@ -1242,20 +1242,20 @@ void mainControlLinks(){
 
             static int mode = 0;
 
-            if(isSSChange()){
+            if(isSSChangeLink()){
                 // Включаем питание приводов
-                driverHipLeft.setEnable(true);
-                driverKneeLeft.setEnable(true);
-                driverFootLeft.setEnable(true);
-                driverHipRight.setEnable(true);
-                driverKneeRight.setEnable(true);
-                driverFootRight.setEnable(true);
+                driverHipLeftLink.setEnable(true);
+                driverKneeLeftLink.setEnable(true);
+                driverFootLeftLink.setEnable(true);
+                driverHipRightLink.setEnable(true);
+                driverKneeRightLink.setEnable(true);
+                driverFootRightLink.setEnable(true);
             }
 
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
                 if(input.equals("Stop")){
-                    stopAllMotors();
+                    stopAllMotorsLink();
                     system_state = SS_MAIN_MENU_LINK;
                     mode = 0;
                 }
@@ -1299,15 +1299,15 @@ void mainControlLinks(){
                 case 2:{
                     _hip_right_set_pos_deg = __poly_hip_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_deg);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(_hip_right_set_pos_deg);
+                    driverKneeRightLink.manualControl(0);
+                    driverFootRightLink.manualControl(0);
 
                     if(__poly_hip_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         __poly_knee_right.calculate(encodKneeRightLink.getPositionDeg(), q21_des, 0, 0, 0, 3000);
                         mode = 3;
                     }
@@ -1316,14 +1316,14 @@ void mainControlLinks(){
                 case 3:{
                     _knee_right_set_pos_deg = __poly_knee_right.getPosition();
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_deg);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.manualControl(0);
+                    driverKneeRightLink.control(_knee_right_set_pos_deg);
+                    driverFootRightLink.manualControl(0);
                     if(__poly_knee_right.isFinished()){
-                        stopAllMotors();
+                        stopAllMotorsLink();
                         mode = 4;
                     }
                 } break;
@@ -1351,12 +1351,12 @@ void mainControlLinks(){
 
                     kinematics = directKinematics(lengthHip, lengthKnee);
 
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(rad2deg(-1 * angle.q1));
-                    driverKneeRight.control(rad2deg(-1 * angle.q21));
-                    driverFootRight.manualControl(0);
+                    driverHipLeftLink.manualControl(0);
+                    driverKneeLeftLink.manualControl(0);
+                    driverFootLeftLink.manualControl(0);
+                    driverHipRightLink.control(rad2deg(-1 * angle.q1));
+                    driverKneeRightLink.control(rad2deg(-1 * angle.q21));
+                    driverFootRightLink.manualControl(0);
 
                     Serial.print(kinematics.A3x);
                     Serial.print(" , ");
@@ -1390,29 +1390,29 @@ void angleFootProtection(){
     }
 }
 
-void setMotorSpeed(int motorNumber, int speed){
+void setMotorSpeedAdj(int motorNumber, int speed){
     switch (motorNumber) {
         case 1:
             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_LEFT), encodHipLeftHandler, CHANGE);
-            driverHipLeft.manualControl(speed);
+            driverHipLeftAdj.manualControl(speed);
             break;
         case 2:
             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_LEFT), encodKneeLeftHandler, CHANGE);
-            driverKneeLeft.manualControl(speed);
+            driverKneeLeftAdj.manualControl(speed);
             break;
         case 3:
-            driverFootLeft.manualControl(speed);
+            driverFootLeftAdj.manualControl(speed);
             break;
         case 4:
             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT), encodHipRightHandler, CHANGE);
-            driverHipRight.manualControl(speed);
+            driverHipRightAdj.manualControl(speed);
             break;
         case 5:
             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT), encodKneeRightHandler, CHANGE);
-            driverKneeRight.manualControl(speed);
+            driverKneeRightAdj.manualControl(speed);
             break;
         case 6:
-            driverFootRight.manualControl(speed);
+            driverFootRightAdj.manualControl(speed);
             break;
     }
 }
@@ -1423,12 +1423,12 @@ void stopAllMotors(){
     detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT));
     detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT));
 
-    driverHipLeft.manualControl(0);
-    driverKneeLeft.manualControl(0);
-    driverFootLeft.manualControl(0);
-    driverHipRight.manualControl(0);
-    driverKneeRight.manualControl(0);
-    driverFootRight.manualControl(0);
+    driverHipLeftAdj.manualControl(0);
+    driverKneeLeftAdj.manualControl(0);
+    driverFootLeftAdj.manualControl(0);
+    driverHipRightAdj.manualControl(0);
+    driverKneeRightAdj.manualControl(0);
+    driverFootRightAdj.manualControl(0);
 }
 
 void SetPositionDesired(int linkNumber, float length, float time){
@@ -1459,15 +1459,15 @@ void SetPositionDesired(int linkNumber, float length, float time){
                 case 1:{
                     attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_LEFT), encodHipLeftHandler, CHANGE);
                     _hip_left_set_pos_len = __poly_hip_left_adj.getPosition();
-                    driverHipLeft.control(_hip_left_set_pos_len);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftAdj.control(_hip_left_set_pos_len);
+                    driverKneeLeftAdj.manualControl(0);
+                    driverFootLeftAdj.manualControl(0);
+                    driverHipRightAdj.manualControl(0);
+                    driverKneeRightAdj.manualControl(0);
+                    driverFootRightAdj.manualControl(0);
 
                     if(__poly_hip_left_adj.isFinished()){
-                        driverHipLeft.manualControl(0);
+                        driverHipLeftAdj.manualControl(0);
                         mode = 0;
                         system_state_adj = SS_MAIN_MENU_ADJ;
                     }
@@ -1488,15 +1488,15 @@ void SetPositionDesired(int linkNumber, float length, float time){
                 case 1:{
                     attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_LEFT), encodKneeLeftHandler, CHANGE);
                     _knee_left_set_pos_len = __poly_knee_left_adj.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.control(_knee_left_set_pos_len);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftAdj.manualControl(0);
+                    driverKneeLeftAdj.control(_knee_left_set_pos_len);
+                    driverFootLeftAdj.manualControl(0);
+                    driverHipRightAdj.manualControl(0);
+                    driverKneeRightAdj.manualControl(0);
+                    driverFootRightAdj.manualControl(0);
 
                     if(__poly_knee_left_adj.isFinished()){
-                        driverKneeLeft.manualControl(0);
+                        driverKneeLeftAdj.manualControl(0);
                         mode = 0;
                         system_state_adj = SS_MAIN_MENU_ADJ;
                     }
@@ -1542,15 +1542,15 @@ void SetPositionDesired(int linkNumber, float length, float time){
                 case 1:{
                     attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT), encodHipRightHandler, CHANGE);
                     _hip_right_set_pos_len = __poly_hip_right_adj.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.control(_hip_right_set_pos_len);
-                    driverKneeRight.manualControl(0);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftAdj.manualControl(0);
+                    driverKneeLeftAdj.manualControl(0);
+                    driverFootLeftAdj.manualControl(0);
+                    driverHipRightAdj.control(_hip_right_set_pos_len);
+                    driverKneeRightAdj.manualControl(0);
+                    driverFootRightAdj.manualControl(0);
 
                     if(__poly_hip_right_adj.isFinished()){
-                        driverHipRight.manualControl(0);
+                        driverHipRightAdj.manualControl(0);
                         mode = 0;
                         system_state_adj = SS_MAIN_MENU_ADJ;
                     }
@@ -1571,15 +1571,15 @@ void SetPositionDesired(int linkNumber, float length, float time){
                 case 1:{
                     attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT), encodKneeRightHandler, CHANGE);
                     _knee_right_set_pos_len = __poly_knee_right_adj.getPosition();
-                    driverHipLeft.manualControl(0);
-                    driverKneeLeft.manualControl(0);
-                    driverFootLeft.manualControl(0);
-                    driverHipRight.manualControl(0);
-                    driverKneeRight.control(_knee_right_set_pos_len);
-                    driverFootRight.manualControl(0);
+                    driverHipLeftAdj.manualControl(0);
+                    driverKneeLeftAdj.manualControl(0);
+                    driverFootLeftAdj.manualControl(0);
+                    driverHipRightAdj.manualControl(0);
+                    driverKneeRightAdj.control(_knee_right_set_pos_len);
+                    driverFootRightAdj.manualControl(0);
 
                     if(__poly_knee_right_adj.isFinished()){
-                        driverKneeRight.manualControl(0);
+                        driverKneeRightAdj.manualControl(0);
                         mode = 0;
                         system_state_adj = SS_MAIN_MENU_ADJ;
                     }
@@ -1631,7 +1631,7 @@ void mainControlAdj(){
 
     switch(system_state_adj){
         case SS_MAIN_MENU_ADJ:{
-            if(isSSChange());
+            if(isSSChangeAdj());
             // Ждем ручной запуск системы
             if(Serial.available()){
                 String input = Serial.readStringUntil('\n');
@@ -1655,9 +1655,9 @@ void mainControlAdj(){
                                 motorNumber = param.toInt();
                                 speed = param.substring(param.indexOf(':') + 1).toInt();
                                 if(input.startsWith("ManAdjUp"))
-                                setMotorSpeed(motorNumber, speed);
+                                setMotorSpeedAdj(motorNumber, speed);
                                 else if(input.startsWith("ManAdjDown"))
-                                setMotorSpeed(motorNumber, -speed);
+                                setMotorSpeedAdj(motorNumber, -speed);
                             }
                         }
                     }
@@ -1701,7 +1701,7 @@ void mainControlAdj(){
             // Скорость увеличения напряжения при инициализации, [Вольт/сек]
             const float _CALIBRATION_VELOCITY_ENCOD_ZERO = 1.5;
 
-            if(isSSChange());
+            if(isSSChangeAdj());
 
             // Плавно увеличиваем напряжение на двигателе
             static float _voltage = 0;                              // Напряжение, подаваемое на драйвер
@@ -1716,12 +1716,12 @@ void mainControlAdj(){
                     // Обнуляем переменную напряжение драйвера
                     if(isZSChange()) _voltage = 0;
                     // Если концевик не нажат, перемещаем привод в сторону концевика
-                    if(digitalRead(PIN_SWITCH_HIP_LEFT)) driverHipLeft.manualControl(_voltage);
+                    if(digitalRead(PIN_SWITCH_HIP_LEFT)) driverHipLeftAdj.manualControl(_voltage);
                     // Если концевик нажат
                     else{
                         // Останавливаем привод (иначе он продолжит двигаться, т.к. analogWrite() 
                         // "Запоминает" ШИМ, переданный на пин, даже если функция больше не вызывается
-                        driverHipLeft.manualControl(0);
+                        driverHipLeftAdj.manualControl(0);
                         // Обнуляем положение энкодера
                         encodHipLeftAdj.setZero();
                         // Приключаем режим
@@ -1732,9 +1732,9 @@ void mainControlAdj(){
                 case ZS_KNEE_LEFT:{
                     if(isZSChange()) _voltage = 0;
 
-                    if(digitalRead(PIN_SWITCH_KNEE_LEFT)) driverKneeLeft.manualControl(_voltage);
+                    if(digitalRead(PIN_SWITCH_KNEE_LEFT)) driverKneeLeftAdj.manualControl(_voltage);
                     else{
-                        driverKneeLeft.manualControl(0);
+                        driverKneeLeftAdj.manualControl(0);
                         encodKneeLeftAdj.setZero();
                         zeroing_state = ZS_HIP_RIGHT;
                     }
@@ -1743,9 +1743,9 @@ void mainControlAdj(){
                 case ZS_HIP_RIGHT:{
                     if(isZSChange()) _voltage = 0;
 
-                    if(digitalRead(PIN_SWITCH_HIP_RIGHT)) driverHipRight.manualControl(_voltage);
+                    if(digitalRead(PIN_SWITCH_HIP_RIGHT)) driverHipRightAdj.manualControl(_voltage);
                     else{
-                        driverHipRight.manualControl(0);
+                        driverHipRightAdj.manualControl(0);
                         encodHipRightAdj.setZero();
                         zeroing_state = ZS_KNEE_RIGHT;
                     } 
@@ -1754,9 +1754,9 @@ void mainControlAdj(){
                 case ZS_KNEE_RIGHT:{
                     if(isZSChange()) _voltage = 0;
 
-                    if(digitalRead(PIN_SWITCH_KNEE_RIGHT)) driverKneeRight.manualControl(_voltage);
+                    if(digitalRead(PIN_SWITCH_KNEE_RIGHT)) driverKneeRightAdj.manualControl(_voltage);
                     else{
-                        driverKneeRight.manualControl(0);
+                        driverKneeRightAdj.manualControl(0);
                         encodKneeRightAdj.setZero();
 
                         is_zeroed_flag = true;
@@ -1793,11 +1793,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_LEFT), encodHipLeftHandler, CHANGE);
                             _hip_left_set_pos_deg = __poly_hip_left.getPosition();
-                            driverHipLeft.control(_hip_left_set_pos_deg);
+                            driverHipLeftAdj.control(_hip_left_set_pos_deg);
 
                             if(__poly_hip_left.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_LEFT));
-                                driverHipLeft.manualControl(0);
+                                driverHipLeftAdj.manualControl(0);
                                 mode = 0; 
                                 demo_state = DS_KNEE_LEFT;
                                 //system_state = SS_MAIN_MENU;
@@ -1819,11 +1819,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_LEFT), encodKneeLeftHandler, CHANGE);
                             _knee_left_set_pos_deg = __poly_knee_left.getPosition();
-                            driverKneeLeft.control(_knee_left_set_pos_deg);
+                            driverKneeLeftAdj.control(_knee_left_set_pos_deg);
 
                             if(__poly_knee_left.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_LEFT));
-                                driverKneeLeft.manualControl(0);
+                                driverKneeLeftAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_HIP_RIGHT;
                                 //system_state = SS_MAIN_MENU;
@@ -1844,11 +1844,11 @@ void mainControlAdj(){
 
                         case 1:{
                             _foot_left_set_pos_deg = __poly_foot_left.getPosition();
-                            driverFootLeft.control(_foot_left_set_pos_deg);
+                            driverFootLeftAdj.control(_foot_left_set_pos_deg);
 
                             if(__poly_foot_left.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_ANGLE_FOOT_LEFT));
-                                driverFootLeft.manualControl(0);
+                                driverFootLeftAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_FOOT_LEFT;
                                 // system_state = SS_MAIN_MENU;
@@ -1868,11 +1868,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT), encodHipRightHandler, CHANGE);
                             _hip_right_set_pos_deg = __poly_hip_right.getPosition();
-                            driverHipRight.control(_hip_right_set_pos_deg);
+                            driverHipRightAdj.control(_hip_right_set_pos_deg);
 
                             if(__poly_hip_right.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT));
-                                driverHipRight.manualControl(0);
+                                driverHipRightAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_KNEE_RIGHT;
                                 system_state_adj = SS_MAIN_MENU_ADJ;
@@ -1894,11 +1894,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT), encodKneeRightHandler, CHANGE);
                             _knee_right_set_pos_deg = __poly_knee_right.getPosition();
-                            driverKneeRight.control(_knee_right_set_pos_deg);
+                            driverKneeRightAdj.control(_knee_right_set_pos_deg);
 
                             if(__poly_knee_right.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT));
-                                driverKneeRight.manualControl(0);
+                                driverKneeRightAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_KNEE_RIGHT_BACK;
                                 //system_state = SS_MAIN_MENU;
@@ -1919,11 +1919,11 @@ void mainControlAdj(){
 
                         case 1:{
                             _foot_right_set_pos_deg = __poly_foot_right.getPosition();
-                            driverFootRight.control(_foot_right_set_pos_deg);
+                            driverFootRightAdj.control(_foot_right_set_pos_deg);
 
                             if(__poly_foot_right.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_ANGLE_FOOT_RIGHT));
-                                driverFootRight.manualControl(0);
+                                driverFootRightAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_FOOT_RIGHT;
                                 // system_state = SS_MAIN_MENU;
@@ -1943,11 +1943,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT), encodKneeRightHandler, CHANGE);
                             _knee_right_set_pos_deg = __poly_knee_right.getPosition();
-                            driverKneeRight.control(_knee_right_set_pos_deg);
+                            driverKneeRightAdj.control(_knee_right_set_pos_deg);
 
                             if(__poly_knee_right.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_RIGHT));
-                                driverKneeRight.manualControl(0);
+                                driverKneeRightAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_HIP_RIGHT_BACK;
                                 //system_state = SS_MAIN_MENU;
@@ -1969,11 +1969,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT), encodHipRightHandler, CHANGE);
                             _hip_right_set_pos_deg = __poly_hip_right.getPosition();
-                            driverHipRight.control(_hip_right_set_pos_deg);
+                            driverHipRightAdj.control(_hip_right_set_pos_deg);
 
                             if(__poly_hip_right.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_RIGHT));
-                                driverHipRight.manualControl(0);
+                                driverHipRightAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_KNEE_LEFT_BACK;
                                 //system_state = SS_MAIN_MENU;
@@ -1995,11 +1995,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_LEFT), encodKneeLeftHandler, CHANGE);
                             _knee_left_set_pos_deg = __poly_knee_left.getPosition();
-                            driverKneeLeft.control(_knee_left_set_pos_deg);
+                            driverKneeLeftAdj.control(_knee_left_set_pos_deg);
 
                             if(__poly_knee_left.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_KNEE_LEFT));
-                                driverKneeLeft.manualControl(0);
+                                driverKneeLeftAdj.manualControl(0);
                                 mode = 0;
                                 demo_state = DS_HIP_LEFT_BACK;
                                 //system_state = SS_MAIN_MENU;
@@ -2021,11 +2021,11 @@ void mainControlAdj(){
                         case 1:{
                             attachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_LEFT), encodHipLeftHandler, CHANGE);
                             _hip_left_set_pos_deg = __poly_hip_left.getPosition();
-                            driverHipLeft.control(_hip_left_set_pos_deg);
+                            driverHipLeftAdj.control(_hip_left_set_pos_deg);
 
                             if(__poly_hip_left.isFinished()){
                                 detachInterrupt(digitalPinToInterrupt(PIN_OPTO_ENCODER_HIP_LEFT));
-                                driverHipLeft.manualControl(0);
+                                driverHipLeftAdj.manualControl(0);
                                 mode = 0; 
                                 demo_state = DS_HIP_LEFT_BACK;
                                 system_state_adj = SS_MAIN_MENU_ADJ;

@@ -19,7 +19,7 @@ SYSTEM_STATES_LINK system_state = SS_MAIN_MENU_LINK;
 int system_state_last = -1;
 
 // Если сменилось состояние системы, вернет единицу на 1 цикл
-bool isSSChange()
+bool isSSChangeLink()
 {
     if (system_state != system_state_last)
     {
@@ -134,7 +134,7 @@ enum SYSTEM_STATES_ADJ{
   int system_state_last_adj = -1;
   
   // Если сменилось состояние системы, вернет единицу на 1 цикл
-  bool isSSChange(){
+  bool isSSChangeAdj(){
     if(system_state_adj != system_state_last_adj){
         system_state_last_adj = system_state_adj;
         return true;

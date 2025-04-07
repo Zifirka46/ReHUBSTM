@@ -5,9 +5,9 @@
 #define SERVO_RIGHT_DIR PF5
 #define SERVO_RIGTH_EN PE13
 
-#define SERVO_RIGHT_STEP PC6
-#define SERVO_RIGHT_DIR PB12
-#define SERVO_RIGTH_EN PA4 
+#define SERVO_LEFT_STEP PC6
+#define SERVO_LEFT_DIR PB12
+#define SERVO_LEFT_EN PA4 
 
 // Распиновка звеньев
 
@@ -62,10 +62,16 @@
 #define BUTTON_FOOT_RIGHT_UP 0x11
 #define BUTTON_FOOT_RIGHT_DOWN 0x12
 
+#define BUTTON_WIDTH_UP 0x13
+#define BUTTON_WIDTH_DOWN 0x14
+
+#define BUTTON_HEIGHT_UP 0x15
+#define BUTTON_HEIGHT_DOWN 0x16
+
 // Подключение регулировок левго бедра
-#define PIN_DRIVE_HIP_LEFT_INA PE9
-#define PIN_DRIVE_HIP_LEFT_INB PE11
-#define PIN_DRIVE_HIP_LEFT_PWM PC8
+#define PIN_DRIVER_HIP_LEFT_INA PE9
+#define PIN_DRIVER_HIP_LEFT_INB PE11
+#define PIN_DRIVER_HIP_LEFT_PWM PC8
 
 // Подключение регулировок левой голени
 #define PIN_DRIVER_KNEE_LEFT_INA PD15
@@ -156,21 +162,26 @@
 #define PIN_ANGLE_FOOT_LEFT PA5
 #define PIN_ANGLE_FOOT_RIGHT PA6
 
+//Концевики (в распиновки они просто пронумерованы от 1 до 4 так что может не совпасть с реальностью)
+//Были подписаны только какие 2 левые и какие 2 правые
+#define PIN_SWITCH_HIP_LEFT PD2
+#define PIN_SWITCH_KNEE_LEFT PC11
+
+#define PIN_SWITCH_HIP_RIGHT PH_2
+#define PIN_SWITCH_KNEE_RIGHT PG12
+
+//Реле
+#define PIN_RELAY_ADJ PB4 //Регулеровки
+#define PIN_RELAY_MAX PA15 //Звенья(максоны)
+
 // Настройка пинов
 void setupPins()
 {
 
-    // Туду возможно стоит настройку пинов переместить в библиотеку
-    pinMode(PIN_ENCOD_HIP_LEFT, INPUT);
-    pinMode(PIN_ENCOD_KNEE_LEFT, INPUT);
-    pinMode(PIN_ENCOD_HIP_RIGHT, INPUT);
-    pinMode(PIN_ENCOD_KNEE_RIGHT, INPUT);
-
-    pinMode(PIN_ANGLE_FOOT_LEFT, INPUT);
-    pinMode(PIN_ANGLE_FOOT_RIGHT, INPUT);
-
-    pinMode(PIN_POWER_RELAY, OUTPUT);
+    pinMode(PIN_RELAY_ADJ, OUTPUT);
+    pinMode(PIN_RELAY_MAX, OUTPUT);
 
     // Запуск реле
-    digitalWrite(PIN_POWER_RELAY, HIGH);
+    digitalWrite(PIN_RELAY_ADJ, HIGH);
+    digitalWrite(PIN_RELAY_MAX, HIGH);
 }

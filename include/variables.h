@@ -2,8 +2,6 @@
 
 #include <math.h>
 
-const float PI = 3.14159265;
-
 // Enum состояний системы (верхний уровень КА)
 enum SYSTEM_STATES_LINK
 {

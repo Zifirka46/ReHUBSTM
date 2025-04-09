@@ -32,7 +32,6 @@ void setup(){
 
 void loop(){
   updateEncod();
-  mainControlLinks();
-  mainControlAdj();
+  mainControl();
   sendingData();
 }

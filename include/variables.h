@@ -3,23 +3,26 @@
 #include <math.h>
 
 // Enum состояний системы (верхний уровень КА)
-enum SYSTEM_STATES_LINK
+enum SYSTEM_STATES
 {
-    SS_MAIN_MENU_LINK,     // Ожидание команды запуска от ППО
+    SS_MAIN_MENU,     // Ожидание команды запуска от ППО
     SS_ANGLE_DESIRED_LINK, // Полуавтомат. желаемые углы
     SS_START_POSING_LINK,  // Перевод звеньев в положение по умолчанию
     SS_EXE_DEMO_LINK,      // Упражнение, перемещение левого бедра
     SS_SEDENTARY_LINK,     // Сидячее положение
     SS_WALK_1_LINK,        // Походка
     SS_WALK_2_LINK,
-    SS_HMN_GAIT_LINK
+    SS_HMN_GAIT_LINK,
+    SS_POSITION_DESIRED_ADJ,
+    SS_ZEROING_ADJ,     // Обнуление энкодеров
+    SS_DEMO_ADJ
 };
 
-SYSTEM_STATES_LINK system_state = SS_MAIN_MENU_LINK;
+SYSTEM_STATES system_state = SS_MAIN_MENU;
 int system_state_last = -1;
 
 // Если сменилось состояние системы, вернет единицу на 1 цикл
-bool isSSChangeLink()
+bool isSSChange()
 {
     if (system_state != system_state_last)
     {
@@ -121,27 +124,6 @@ void getApproxHmnGt(float &x_aprox, float &y_aprox, float x)
 //.......................................................................................................................
 // регулировки
 
-// Enum состояний системы (верхний уровень КА)
-enum SYSTEM_STATES_ADJ{
-    SS_MAIN_MENU_ADJ,   // Главное меню
-    SS_POSITION_DESIRED_ADJ,
-    SS_ZEROING_ADJ,     // Обнуление энкодеров
-    SS_DEMO_ADJ
-  };
-  
-  // Текущее состояние системы
-  SYSTEM_STATES_ADJ system_state_adj = SS_MAIN_MENU_ADJ;
-  int system_state_last_adj = -1;
-  
-  // Если сменилось состояние системы, вернет единицу на 1 цикл
-  bool isSSChangeAdj(){
-    if(system_state_adj != system_state_last_adj){
-        system_state_last_adj = system_state_adj;
-        return true;
-    }
-    else return false;  
-  }
-  
   // Состояния обнуления регулировок с ДУП - энкодером (второй уровень КА)
   enum ZEROING_STATES{
     ZS_HIP_LEFT,   // Поиск нуля ДУП левого бедра

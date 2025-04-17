@@ -19,7 +19,7 @@ class DriverControllerMaxon : public GyverPID{
             setLimits(_OUTPUT_LIMIT_MIN, _OUTPUT_LIMIT_MAX);
         };
 
-        void manualControl(float _voltage){
+        void manualControlLink(float _voltage){
             int _pwm = constrain(abs(_voltage), 0, 24) * (_OUTPUT_LIMIT_MAX / 24);
             if(_voltage > 0){
                 digitalWrite(_pin_dir, LOW);
@@ -167,15 +167,15 @@ class DriverControllerEncod : public GyverPID{
         };
 
         // Ручное управление приводами, принимает значение напряжения с учетом знака 
-        void manualControl(float _voltage){
+        void manualControlAdj(float _voltage){
             int _pwm = constrain(abs(_voltage), 0, MOTOR_VOLTAGE_LIMIT) * (_OUTPUT_LIMIT_MAX / MOTOR_VOLTAGE_LIMIT);
 
             // Управляем направлением вращения двигателя
-            if(_voltage > 0){
+            if(_voltage > 2){
                 digitalWrite(_pin_in_a, LOW);
                 digitalWrite(_pin_in_b, HIGH);
                 _encoderObj.setVector(0);
-            } else if(_voltage < 0) {
+            } else if(_voltage < -2) {
                 digitalWrite(_pin_in_a, HIGH);
                 digitalWrite(_pin_in_b, LOW);
                 _encoderObj.setVector(1);

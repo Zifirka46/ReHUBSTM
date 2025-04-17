@@ -17,17 +17,17 @@ void updateSensors(){
     angle_knee_right = encodKneeRightLink.getPositionDeg();
     angle_foot_right = encodFootRightLink.getPositionDeg();
 
-    force_hip_left = scaleHipLeft.getForce();
-    force_knee_left = scaleKneeLeft.getForce();
-    force_foot_left1 = scaleFootLeft1.getForce();
-    force_foot_left2 = scaleFootLeft2.getForce();
-    force_foot_left3 = scaleFootLeft3.getForce();
+    // force_hip_left = scaleHipLeft.getForce();
+    // force_knee_left = scaleKneeLeft.getForce();
+    // force_foot_left1 = scaleFootLeft1.getForce();
+    // force_foot_left2 = scaleFootLeft2.getForce();
+    // force_foot_left3 = scaleFootLeft3.getForce();
 
-    force_hip_right = scaleHipRight.getForce();
-    force_knee_right = scaleKneeRight.getForce();
-    force_foot_right1 = scaleFootRight1.getForce();
-    force_foot_right2 = scaleFootRight2.getForce();
-    force_foot_right3 = scaleFootRight3.getForce();
+    // force_hip_right = scaleHipRight.getForce();
+    // force_knee_right = scaleKneeRight.getForce();
+    // force_foot_right1 = scaleFootRight1.getForce();
+    // force_foot_right2 = scaleFootRight2.getForce();
+    // force_foot_right3 = scaleFootRight3.getForce();
 
     //регулировки
     value_hip_left = encodHipLeftAdj.getPosition();
